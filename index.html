@@ -1,0 +1,927 @@
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+  <title>คู่มือขนาด</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: #1a1a1a;
+      color: #d3d3d3;
+      margin: 0;
+      overflow-x: auto; /* อนุญาตให้เลื่อนแนวนอน */
+      overflow-y: hidden; /* ปิดการเลื่อนแนวตั้ง */
+    }
+
+    header {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 2.5rem;
+    }
+
+    nav a {
+      color: #d3d3d3;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .hamburger {
+      color: #d3d3d3;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      z-index: 1002;
+      transition: color 0.2s ease;
+    }
+
+    .hamburger:hover {
+      color: #ffffff;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      right: 0;
+      background-color: #2f2f2f;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #d3d3d3;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #444444;
+    }
+
+    .sidebar .close-btn {
+      position: absolute;
+      top: 0;
+      left: 15px;
+      font-size: 2rem;
+      margin-left: 50px;
+    }
+
+    #main-content {
+      transition: margin-right 0.3s;
+      padding: 16px;
+      margin-top: 60px;
+      margin-right: 0;
+    }
+
+    section {
+      background-color: #333333;
+      color: #d3d3d3;
+      display: none;
+    }
+    h2 {
+      color: #d3d3d3;
+    }
+    p {
+      color: #b0b0b0;
+    }
+    label {
+      color: #d3d3d3;
+    }
+
+    table {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      border-color: #4a4a4a;
+    }
+    thead {
+      background-color: #1a1a1a;
+      color: #d3d3d3;
+    }
+    tbody tr {
+      border-color: #4a4a4a;
+    }
+    td, th {
+      border-color: #4a4a4a;
+    }
+
+    input, select {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      border-color: #4a4a4a;
+    }
+    input::placeholder, select option {
+      color: #b0b0b0;
+    }
+    input:focus, select:focus {
+      outline: none;
+      ring: 2px solid #d3d3d3;
+      border-color: #d3d3d3;
+    }
+
+    .button-container {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .button-container button {
+      padding: 0.75rem 1rem;
+      max-width: none;
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar {
+        width: 0;
+      }
+      #main-content {
+        margin-right: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav {
+        margin-right: 2.5rem;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .instruction-text {
+      color: #a0a0a0;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <header class="flex items-center justify-between px-6 py-3">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-ruler-combined text-xl"></i>
+      <span class="font-semibold text-lg select-none">คู่มือขนาด</span>
+    </div>
+    <nav class="flex space-x-6 text-sm font-medium">
+      <a href="#" class="text-d3d3d3 hover:text-white">หน้าแรก</a>
+    </nav>
+    <button class="hamburger" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">×</a>
+    <a href="#" onclick="showSection('foot-section')">ขนาดเท้า</a>
+    <a href="#" onclick="showSection('shirt-section')">ขนาดเสื้อ</a>
+    <a href="#" onclick="showSection('ring-section')">ขนาดนิ้วสำหรับแหวน</a>
+    <a href="#" onclick="showSection('hat-section')">ขนาดหัวสำหรับหมวก</a>
+    <a href="#" onclick="showSection('waist-section')">ขนาดเอว</a>
+    <a href="#" onclick="showSection('neck-section')">ขนาดคอ</a>
+    <a href="#" onclick="showSection('wrist-section')">ขนาดข้อมือ</a>
+  </div>
+
+  <div id="main-content">
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 gap-6">
+      <section id="foot-section" class="rounded-lg shadow p-6 flex flex-col">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเท้า</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาใส่ขนาดเท้าและเพศเพื่อค้นหาขนาดรองเท้าที่เหมาะสม</p>
+        <p class="instruction-text">วัดความยาวเท้าโดยวางเท้าบนกระดาษแล้วใช้ไม้บรรทัดวัดจากส้นเท้าถึงปลายนิ้วเท้าที่ยาวที่สุด</p>
+        <form id="foot-form" class="space-y-4">
+          <div>
+            <label for="foot-size" class="block text-sm font-semibold mb-1">ขนาดเท้า (ซม.)</label>
+            <input id="foot-size" type="number" step="0.1" placeholder="เช่น 24.5" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div>
+            <label for="foot-gender" class="block text-sm font-semibold mb-1">เพศ</label>
+            <select id="foot-gender" class="w-full rounded border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-transparent" required>
+              <option value="">เลือกเพศ</option>
+              <option value="male">ชาย</option>
+              <option value="female">หญิง</option>
+            </select>
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchFootSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveFootSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="foot-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleFootTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="foot-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="foot-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">ความยาวเท้า (ซม.)</th>
+                <th class="px-3 py-2 font-semibold border-r">ชาย (EU)</th>
+                <th class="px-3 py-2 font-semibold">หญิง (EU)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">20.0 - 20.5</td><td class="px-3 py-1 border-r">33</td><td class="px-3 py-1">34</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">20.6 - 21.0</td><td class="px-3 py-1 border-r">34</td><td class="px-3 py-1">35</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">21.1 - 21.5</td><td class="px-3 py-1 border-r">34.5</td><td class="px-3 py-1">35.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">21.6 - 22.0</td><td class="px-3 py-1 border-r">35</td><td class="px-3 py-1">36</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">22.1 - 22.5</td><td class="px-3 py-1 border-r">36</td><td class="px-3 py-1">36.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">22.6 - 23.0</td><td class="px-3 py-1 border-r">36.5</td><td class="px-3 py-1">37</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">23.1 - 23.5</td><td class="px-3 py-1 border-r">37</td><td class="px-3 py-1">38</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">23.6 - 24.0</td><td class="px-3 py-1 border-r">38</td><td class="px-3 py-1">39</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">24.1 - 24.5</td><td class="px-3 py-1 border-r">39</td><td class="px-3 py-1">40</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">24.6 - 25.0</td><td class="px-3 py-1 border-r">40</td><td class="px-3 py-1">41</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">25.1 - 25.5</td><td class="px-3 py-1 border-r">40.5</td><td class="px-3 py-1">41.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">25.6 - 26.0</td><td class="px-3 py-1 border-r">41</td><td class="px-3 py-1">42</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">26.1 - 26.5</td><td class="px-3 py-1 border-r">42</td><td class="px-3 py-1">43</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">26.6 - 27.0</td><td class="px-3 py-1 border-r">43</td><td class="px-3 py-1">44</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">27.1 - 27.5</td><td class="px-3 py-1 border-r">44</td><td class="px-3 py-1">45</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">27.6 - 28.0</td><td class="px-3 py-1 border-r">45</td><td class="px-3 py-1">46</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">28.1 - 28.5</td><td class="px-3 py-1 border-r">46</td><td class="px-3 py-1">47</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">28.6 - 29.0</td><td class="px-3 py-1 border-r">47</td><td class="px-3 py-1">48</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">29.1 - 29.5</td><td class="px-3 py-1 border-r">48</td><td class="px-3 py-1">49</td></tr>
+              <tr><td class="px-3 py-1 border-r">29.6 - 30.0</td><td class="px-3 py-1 border-r">49</td><td class="px-3 py-1">50</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="shirt-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเสื้อ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาใส่รอบอกและเพศเพื่อค้นหาขนาดเสื้อที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบอกใต้รักแร้ วัดให้แนบตัวแต่ไม่รัดแน่นจนเกินไป</p>
+        <form id="shirt-form" class="space-y-4">
+          <div>
+            <label for="chest-size" class="block text-sm font-semibold mb-1">รอบอก (ซม.)</label>
+            <input id="chest-size" type="number" step="0.1" placeholder="เช่น 90" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div>
+            <label for="shirt-gender" class="block text-sm font-semibold mb-1">เพศ</label>
+            <select id="shirt-gender" class="w-full rounded border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-transparent" required>
+              <option value="">เลือกเพศ</option>
+              <option value="male">ชาย</option>
+              <option value="female">หญิง</option>
+            </select>
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchShirtSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveShirtSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="shirt-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleShirtTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="shirt-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="shirt-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบอก (ซม.)</th>
+                <th class="px-3 py-2 font-semibold border-r">ชาย</th>
+                <th class="px-3 py-2 font-semibold">หญิง</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60 - 68</td><td class="px-3 py-1 border-r">XS</td><td class="px-3 py-1">XXS</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">69 - 76</td><td class="px-3 py-1 border-r">S</td><td class="px-3 py-1">XS</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">77 - 84</td><td class="px-3 py-1 border-r">M</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">85 - 92</td><td class="px-3 py-1 border-r">L</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">93 - 100</td><td class="px-3 py-1 border-r">XL</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">101 - 108</td><td class="px-3 py-1 border-r">XXL</td><td class="px-3 py-1">XL</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">109 - 116</td><td class="px-3 py-1 border-r">XXXL</td><td class="px-3 py-1">XXL</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">117 - 124</td><td class="px-3 py-1 border-r">4XL</td><td class="px-3 py-1">XXXL</td></tr>
+              <tr><td class="px-3 py-1 border-r">125 - 132</td><td class="px-3 py-1 border-r">5XL</td><td class="px-3 py-1">4XL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ring-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดนิ้วสำหรับแหวน</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบนิ้วเพื่อค้นหาขนาดแหวนที่เหมาะสม</p>
+        <p class="instruction-text">ใช้กระดาษตัดเป็นเส้นบางๆ พันรอบนิ้วแล้ววัดความยาวด้วยไม้บรรทัด (หน่วย มม.)</p>
+        <form id="ring-form" class="space-y-4">
+          <div>
+            <label for="ring-size" class="block text-sm font-semibold mb-1">รอบนิ้ว (มม.)</label>
+            <input id="ring-size" type="number" step="0.1" placeholder="เช่น 55.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchRingSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveRingSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="ring-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleRingTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="ring-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="ring-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบนิ้ว (มม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด (US)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">44.2 - 46.0</td><td class="px-3 py-1">3</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">46.1 - 48.0</td><td class="px-3 py-1">4</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">48.1 - 50.0</td><td class="px-3 py-1">5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">50.1 - 52.0</td><td class="px-3 py-1">6</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">52.1 - 54.0</td><td class="px-3 py-1">7</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">54.1 - 56.0</td><td class="px-3 py-1">8</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">56.1 - 58.0</td><td class="px-3 py-1">9</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">58.1 - 60.0</td><td class="px-3 py-1">10</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60.1 - 62.0</td><td class="px-3 py-1">11</td></tr>
+              <tr><td class="px-3 py-1 border-r">62.1 - 64.0</td><td class="px-3 py-1">12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="hat-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดหัวสำหรับหมวก</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบศีรษะเพื่อค้นหาขนาดหมวกที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบศีรษะเหนือหูและคิ้ว วัดให้แนบแต่ไม่รัดแน่น</p>
+        <form id="hat-form" class="space-y-4">
+          <div>
+            <label for="head-size" class="block text-sm font-semibold mb-1">รอบศีรษะ (ซม.)</label>
+            <input id="head-size" type="number" step="0.1" placeholder="เช่น 55.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchHatSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveHatSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="hat-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleHatTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="hat-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="hat-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบศีรษะ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด (US)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">52.0 - 53.0</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">53.1 - 55.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">55.1 - 57.0</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">57.1 - 59.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">59.1 - 61.0</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="waist-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเอว</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบเอวเพื่อค้นหาขนาดเครื่องแบบที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบเอวบริเวณสะดือ วัดให้แนบตัวแต่ไม่รัดแน่น</p>
+        <form id="waist-form" class="space-y-4">
+          <div>
+            <label for="waist-size" class="block text-sm font-semibold mb-1">รอบเอว (ซม.)</label>
+            <input id="waist-size" type="number" step="0.1" placeholder="เช่น 80.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchWaistSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveWaistSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="waist-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleWaistTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="waist-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="waist-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบเอว (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60 - 70</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">71 - 80</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">81 - 90</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">91 - 100</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">101 - 110</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="neck-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดคอ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบคอเพื่อค้นหาขนาดเสื้อเชิ้ตที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบคอใต้ลูกกระเดือก วัดให้แนบตัวและเพิ่ม 1-2 ซม. เพื่อความสบาย</p>
+        <form id="neck-form" class="space-y-4">
+          <div>
+            <label for="neck-size" class="block text-sm font-semibold mb-1">รอบคอ (ซม.)</label>
+            <input id="neck-size" type="number" step="0.1" placeholder="เช่น 38.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchNeckSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveNeckSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="neck-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleNeckTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="neck-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="neck-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบคอ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">36.0 - 37.0</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">38.0 - 39.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">40.0 - 41.0</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">42.0 - 43.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">44.0 - 45.0</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="wrist-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดข้อมือ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบข้อมือเพื่อค้นหาขนาดสายนาฬิกาหรือกำไลที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบข้อมือเหนือกระดูกข้อมือ วัดให้แนบตัวแต่ไม่รัดแน่น</p>
+        <form id="wrist-form" class="space-y-4">
+          <div>
+            <label for="wrist-size" class="block text-sm font-semibold mb-1">รอบข้อมือ (ซม.)</label>
+            <input id="wrist-size" type="number" step="0.1" placeholder="เช่น 16.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchWristSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveWristSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="wrist-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleWristTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="wrist-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="wrist-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบข้อมือ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">14.0 - 15.5</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">15.6 - 17.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">17.1 - 18.5</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">18.6 - 20.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">20.1 - 21.5</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let savedSizes = [];
+
+    function isDesktopMode() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isMobile = /mobile|android|iphone|ipad|tablet/i.test(userAgent);
+      const isDesktopRequest = userAgent.includes("applewebkit") && userAgent.includes("safari") && !userAgent.includes("mobile");
+      return !isMobile || isDesktopRequest || window.innerWidth >= 1024;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      if (!isDesktopMode()) {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=yes');
+      } else {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
+      }
+
+      showSection('foot-section');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      sidebar.style.width = '0';
+      mainContent.style.marginRight = '0';
+    });
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      if (sidebar.style.width === '200px') {
+        sidebar.style.width = '0';
+        mainContent.style.marginRight = '0';
+      } else {
+        sidebar.style.width = '200px';
+        mainContent.style.marginRight = '200px';
+      }
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      const selectedSection = document.getElementById(sectionId);
+      if (selectedSection) {
+        selectedSection.classList.remove('hidden');
+      }
+
+      toggleSidebar();
+    }
+
+    function searchFootSize() {
+      const footSize = parseFloat(document.getElementById('foot-size').value);
+      const gender = document.getElementById('foot-gender').value;
+      const resultField = document.getElementById('foot-result');
+      if (!footSize || !gender) {
+        resultField.value = 'กรุณากรอกขนาดเท้าและเลือกเพศ';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#foot-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (footSize >= min && footSize <= max) {
+          size = gender === 'male' ? row.cells[1].textContent : row.cells[2].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดรองเท้า: ${size} (EU)` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveFootSize() {
+      const result = document.getElementById('foot-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`เท้า: ${result}`);
+        alert('บันทึกขนาดเท้าสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleFootTable() {
+      const table = document.getElementById('foot-table');
+      const button = document.getElementById('foot-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchShirtSize() {
+      const chestSize = parseFloat(document.getElementById('chest-size').value);
+      const gender = document.getElementById('shirt-gender').value;
+      const resultField = document.getElementById('shirt-result');
+      if (!chestSize || !gender) {
+        resultField.value = 'กรุณากรอกรอบอกและเลือกเพศ';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#shirt-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (chestSize >= min && chestSize <= max) {
+          size = gender === 'male' ? row.cells[1].textContent : row.cells[2].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดเสื้อ: ${size}` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveShirtSize() {
+      const result = document.getElementById('shirt-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`เสื้อ: ${result}`);
+        alert('บันทึกขนาดเสื้อสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleShirtTable() {
+      const table = document.getElementById('shirt-table');
+      const button = document.getElementById('shirt-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchRingSize() {
+      const ringSize = parseFloat(document.getElementById('ring-size').value);
+      const resultField = document.getElementById('ring-result');
+      if (!ringSize) {
+        resultField.value = 'กรุณากรอกรอบนิ้ว';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#ring-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (ringSize >= min && ringSize <= max) {
+          size = row.cells[1].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดแหวน: ${size} (US)` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveRingSize() {
+      const result = document.getElementById('ring-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`แหวน: ${result}`);
+        alert('บันทึกขนาดแหวนสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleRingTable() {
+      const table = document.getElementById('ring-table');
+      const button = document.getElementById('ring-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchHatSize() {
+      const headSize = parseFloat(document.getElementById('head-size').value);
+      const resultField = document.getElementById('hat-result');
+      if (!headSize) {
+        resultField.value = 'กรุณากรอกรอบศีรษะ';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#hat-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (headSize >= min && headSize <= max) {
+          size = row.cells[1].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดหมวก: ${size}` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveHatSize() {
+      const result = document.getElementById('hat-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`หมวก: ${result}`);
+        alert('บันทึกขนาดหมวกสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleHatTable() {
+      const table = document.getElementById('hat-table');
+      const button = document.getElementById('hat-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchWaistSize() {
+      const waistSize = parseFloat(document.getElementById('waist-size').value);
+      const resultField = document.getElementById('waist-result');
+      if (!waistSize) {
+        resultField.value = 'กรุณากรอกรอบเอว';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#waist-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (waistSize >= min && waistSize <= max) {
+          size = row.cells[1].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดเอว: ${size}` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveWaistSize() {
+      const result = document.getElementById('waist-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`เอว: ${result}`);
+        alert('บันทึกขนาดเอวสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleWaistTable() {
+      const table = document.getElementById('waist-table');
+      const button = document.getElementById('waist-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchNeckSize() {
+      const neckSize = parseFloat(document.getElementById('neck-size').value);
+      const resultField = document.getElementById('neck-result');
+      if (!neckSize) {
+        resultField.value = 'กรุณากรอกรอบคอ';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#neck-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (neckSize >= min && neckSize <= max) {
+          size = row.cells[1].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดคอ: ${size}` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveNeckSize() {
+      const result = document.getElementById('neck-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`คอ: ${result}`);
+        alert('บันทึกขนาดคอสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleNeckTable() {
+      const table = document.getElementById('neck-table');
+      const button = document.getElementById('neck-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+
+    function searchWristSize() {
+      const wristSize = parseFloat(document.getElementById('wrist-size').value);
+      const resultField = document.getElementById('wrist-result');
+      if (!wristSize) {
+        resultField.value = 'กรุณากรอกรอบข้อมือ';
+        return;
+      }
+      let size = '';
+      const tableRows = document.querySelectorAll('#wrist-table tbody tr');
+      tableRows.forEach(row => {
+        const range = row.cells[0].textContent.split(' - ');
+        const min = parseFloat(range[0]);
+        const max = parseFloat(range[1]);
+        if (wristSize >= min && wristSize <= max) {
+          size = row.cells[1].textContent;
+        }
+      });
+      resultField.value = size ? `ขนาดข้อมือ: ${size}` : 'ไม่มีขนาดที่เหมาะสม';
+    }
+
+    function saveWristSize() {
+      const result = document.getElementById('wrist-result').value;
+      if (result && !result.includes('กรุณา') && !result.includes('ไม่มี')) {
+        savedSizes.push(`ข้อมือ: ${result}`);
+        alert('บันทึกขนาดข้อมือสำเร็จ!');
+      } else {
+        alert('กรุณาค้นหาขนาดก่อนบันทึก!');
+      }
+    }
+
+    function toggleWristTable() {
+      const table = document.getElementById('wrist-table');
+      const button = document.getElementById('wrist-toggle-btn');
+      const buttonText = button.querySelector('span');
+      const isHidden = table.classList.toggle('hidden');
+      if (isHidden) {
+        buttonText.textContent = 'เปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye-slash');
+        button.querySelector('i').classList.add('fa-eye');
+      } else {
+        buttonText.textContent = 'ปิดตารางขนาด';
+        button.querySelector('i').classList.remove('fa-eye');
+        button.querySelector('i').classList.add('fa-eye-slash');
+      }
+    }
+  </script>
+</body>
+</html>
